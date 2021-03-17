@@ -1,0 +1,16 @@
+
+version: '3.3'
+
+services:
+  backup-pg:
+    image: 'terrabrasilis/backup-pg-dump:v1.0.0'
+    container_name: backup-pg
+    restart: always
+    volumes:
+      - '/main/storage:/data'
+    networks:
+      - proxy_default
+
+networks:
+  proxy_default:
+    external: false
