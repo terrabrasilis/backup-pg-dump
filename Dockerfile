@@ -37,8 +37,8 @@ RUN echo "export SHARED_DIR=\"${SHARED_DIR}\"" >> /etc/environment \
 COPY ./*.sh ${INSTALL_PATH}/
 
 # install and enable cron job scripts
-ADD cron/cron_exec.sh $INSTALL_PATH/
-ADD cron/daily.cron /etc/crontabs/root
+ADD cron/cron_exec.sh ${INSTALL_PATH}/
+ADD cron/weekly.cron /etc/crontabs/root
 RUN chmod +x /etc/crontabs/root \
     && chmod +x /usr/local/*.sh
 
@@ -48,5 +48,3 @@ VOLUME ["${SHARED_DIR}"]
 WORKDIR ${INSTALL_PATH}
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
-
-#CMD crond -b -l 8
