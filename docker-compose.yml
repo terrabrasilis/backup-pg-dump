@@ -13,4 +13,4 @@ services:
 
 networks:
   proxy_default:
-    external: false
+    external: true
