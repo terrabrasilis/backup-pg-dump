@@ -22,7 +22,7 @@ fi
 BACKUP_DIR="$BACKUP_DIR/$1"
 
 echo "***** DB_BACKUP $ACT_DATE *****" >>$LOGFILE
-for db in `echo -e $PG_QUERY |$PG_BIN/psql $PG_CON $PG_FILTER | sed /\eof/p | grep -v rows\) | awk {'print $1'}`
+for db in `echo -e $PG_QUERY |$PG_BIN/psql --dbname=postgres $PG_CON $PG_FILTER | sed /\eof/p | grep -v rows\) | awk {'print $1'}`
   do
     # vacuum
     echo $(date '+%c')" -- vacuuming database $db" >> $LOGFILE
