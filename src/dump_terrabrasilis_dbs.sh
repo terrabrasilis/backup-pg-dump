@@ -15,6 +15,12 @@ PG_QUERY="SELECT datname FROM pg_database WHERE NOT datistemplate AND datname <>
 BACKUP_OPTIONS="$PG_CON -b -C -F c -Z $COMPRESSION"
 VACUUM_OPTIONS="$PG_CON -e"
 
+if [[ ! -d "$BACKUP_DIR/$1" ]]; then
+  mkdir $BACKUP_DIR/$1
+fi
+
+BACKUP_DIR="$BACKUP_DIR/$1"
+
 echo "***** DB_BACKUP $ACT_DATE *****" >>$LOGFILE
 for db in `echo -e $PG_QUERY |$PG_BIN/psql $PG_CON $PG_FILTER | sed /\eof/p | grep -v rows\) | awk {'print $1'}`
   do
