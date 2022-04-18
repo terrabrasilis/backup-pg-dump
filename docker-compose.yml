@@ -3,7 +3,7 @@ version: '2'
 
 services:
   backup-pg:
-    image: 'terrabrasilis/backup-pg-dump:v1.1.0'
+    image: 'terrabrasilis/backup-pg-dump:v1.2.0'
     container_name: backup-pg
     restart: always
     volumes:
