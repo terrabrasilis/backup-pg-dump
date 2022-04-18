@@ -2,6 +2,11 @@
 #
 # Used to backup all TerraBrasilis databases.
 #
+CONF_FILE=${1}
+DATA_DIR=${2}
+INSTALL_PATH=${3}
+# load settings to the each SGDB host.
+. "${INSTALL_PATH}/dbconf.sh" "$DATA_DIR/config/$CONF_FILE"
 
 BACKUP_DIR=$DATA_DIR
 
