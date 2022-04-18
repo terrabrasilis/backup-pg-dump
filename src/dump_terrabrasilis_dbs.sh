@@ -36,10 +36,7 @@ for db in `echo -e $PG_QUERY |$PG_BIN/psql --dbname=postgres $PG_CON $PG_FILTER 
     echo $(date '+%c')" -- backing up database $db" >>$LOGFILE
     if  $PG_BIN/pg_dump $BACKUP_OPTIONS -f $BACKUP_DIR/$db-$ACT_DATE.backup $db
       then
-        if [[ -f $BACKUP_DIR/$db-$EXP_DATE.backup ]]; then
-          echo "OK, deleting old backup" >>$LOGFILE
-          rm $BACKUP_DIR/$db-$EXP_DATE.backup
-        fi
+      echo "Backup was created:${db}-${ACT_DATE}.backup" >>$LOGFILE
     else
       echo "Database $db not backuped!" >>$LOGFILE
     fi
