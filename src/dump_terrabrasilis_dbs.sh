@@ -3,11 +3,9 @@
 # Used to backup all TerraBrasilis databases.
 #
 
-LOGFILE="$DATA_DIR/pg_backup.log"
 BACKUP_DIR=$DATA_DIR
 
 ACT_DATE=$(date '+%d-%m-%Y')
-EXP_DATE=$(date -d '1 day ago' '+%d-%m-%Y')
 
 COMPRESSION="9"
 PG_FILTER="--tuples-only -P format=unaligned"
@@ -20,6 +18,7 @@ if [[ ! -d "$BACKUP_DIR/$1" ]]; then
 fi
 
 BACKUP_DIR="$BACKUP_DIR/$1"
+LOGFILE="${BACKUP_DIR}/pg_backup_${ACT_DATE}.log"
 
 echo "***** DB_BACKUP $ACT_DATE *****" >>$LOGFILE
 for db in `echo -e $PG_QUERY |$PG_BIN/psql --dbname=postgres $PG_CON $PG_FILTER | sed /\eof/p | grep -v rows\) | awk {'print $1'}`
