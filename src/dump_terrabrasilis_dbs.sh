@@ -29,13 +29,13 @@ echo "***** DB_BACKUP $ACT_DATE *****" >>$LOGFILE
 for db in `echo -e $PG_QUERY |$PG_BIN/psql --dbname=postgres $PG_CON $PG_FILTER | sed /\eof/p | grep -v rows\) | awk {'print $1'}`
   do
     # vacuum
-    echo $(date '+%c')" -- vacuuming database $db" >> $LOGFILE
-    if $PG_BIN/vacuumdb $VACUUM_OPTIONS $db
-      then
-      echo "OK!" >>$LOGFILE
-    else
-      echo "No Vacuum in database $db!" >>$LOGFILE
-    fi
+    # echo $(date '+%c')" -- vacuuming database $db" >> $LOGFILE
+    # if $PG_BIN/vacuumdb $VACUUM_OPTIONS $db
+    #   then
+    #   echo "OK!" >>$LOGFILE
+    # else
+    #   echo "No Vacuum in database $db!" >>$LOGFILE
+    # fi
     # backup
     echo $(date '+%c')" -- backing up database $db" >>$LOGFILE
     if  $PG_BIN/pg_dump $BACKUP_OPTIONS -f $BACKUP_DIR/$db-$ACT_DATE.backup $db
