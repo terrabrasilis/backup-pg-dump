@@ -13,7 +13,7 @@ BACKUP_DIR=${DATA_DIR}
 ACT_DATE=$(date '+%d-%m-%Y')
 
 COMPRESSION="9"
-PG_FILTER="--tuples-only -P format=unaligned -c"
+PG_FILTER="--tuples-only -P format=unaligned "
 PG_QUERY="SELECT database_name, need_vacuum FROM public.databases_for_bkp;"
 BACKUP_OPTIONS="${PG_CON} -b -C -F c -Z ${COMPRESSION}"
 VACUUM_OPTIONS="${PG_CON} -e"
