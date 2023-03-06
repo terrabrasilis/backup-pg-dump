@@ -35,12 +35,9 @@ RUN echo "export SHARED_DIR=\"${SHARED_DIR}\"" >> /etc/environment \
     && echo "export TZ=America/Sao_Paulo" >> /etc/environment
 
 COPY ./*.sh ${INSTALL_PATH}/
+COPY ./cron/*.* ${INSTALL_PATH}/
 
-# install and enable cron job scripts
-ADD cron/cron_exec.sh ${INSTALL_PATH}/
-ADD cron/weekly.cron /etc/crontabs/root
-RUN chmod +x /etc/crontabs/root \
-    && chmod +x /usr/local/*.sh
+RUN chmod +x /usr/local/*.sh
 
 # expose shared dir
 VOLUME ["${SHARED_DIR}"]
