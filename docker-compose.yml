@@ -3,17 +3,11 @@ version: '2'
 
 services:
   backup-pg:
-    image: 'terrabrasilis/backup-pg-dump:v1.3.0'
+    image: 'terrabrasilis/backup-pg-dump:v1.3.1'
     container_name: backup-pg
     restart: always
     volumes:
       - '/main/storage:/data'
-    networks:
-      - proxy_default
     environment:
       # if omitted or different from "DAILY" the default value of "WEEKLY" mode will be used
       - "FREQUENCY=DAILY"
-
-networks:
-  proxy_default:
-    external: true
