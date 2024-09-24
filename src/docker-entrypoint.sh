@@ -20,6 +20,7 @@ then
     echo "export FREQUENCY=daily" >> /etc/environment
     # if no defined, use default to each frequency
     if [[ "${DAYS_TO_KEEP}" = "" ]];
+    then
         echo "export DAYS_TO_KEEP=45" >> /etc/environment
     fi;
 else
@@ -29,6 +30,7 @@ else
     echo "export FREQUENCY=weekly" >> /etc/environment
     # if no defined, use default to each frequency
     if [[ "${DAYS_TO_KEEP}" = "" ]];
+    then
         echo "export DAYS_TO_KEEP=60" >> /etc/environment
     fi;
 fi;
