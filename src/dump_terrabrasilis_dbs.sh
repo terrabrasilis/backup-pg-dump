@@ -21,11 +21,11 @@ PG_FILTER="--tuples-only -P format=unaligned "
 BACKUP_OPTIONS="${PG_CON} -b -C -F c -Z ${COMPRESSION}"
 VACUUM_OPTIONS="${PG_CON} -e"
 
-if [[ ! -d "${BACKUP_DIR}/${CONF_FILE}" ]]; then
-  mkdir ${BACKUP_DIR}/${CONF_FILE}
+if [[ ! -d "${BACKUP_DIR}/${FILTER_FREQUENCY}/${CONF_FILE}" ]]; then
+  mkdir -p ${BACKUP_DIR}/${FILTER_FREQUENCY}/${CONF_FILE}
 fi
 
-BACKUP_DIR="${BACKUP_DIR}/${CONF_FILE}"
+BACKUP_DIR="${BACKUP_DIR}/${FILTER_FREQUENCY}/${CONF_FILE}"
 LOGFILE="${BACKUP_DIR}/pg_backup_${ACT_DATE}.log"
 
 echo "***** DB_BACKUP ${ACT_DATE} *****" >> ${LOGFILE}

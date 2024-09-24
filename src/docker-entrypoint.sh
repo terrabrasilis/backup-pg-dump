@@ -9,9 +9,13 @@ if [[ "DAILY" = "${FREQUENCY}" ]];
 then
     cp ${INSTALL_PATH}/daily.cron /etc/crontabs/root
     echo "enable daily cron job"
+    # used to append as filter in SQL to read the target databases
+    echo "export FREQUENCY=daily" >> /etc/environment
 else
     cp ${INSTALL_PATH}/weekly.cron /etc/crontabs/root
     echo "enable weekly cron job"
+    # used to append as filter in SQL to read the target databases
+    echo "export FREQUENCY=weekly" >> /etc/environment
 fi;
 chmod +x /etc/crontabs/root
 
