@@ -6,6 +6,7 @@ source /etc/environment
 # How many days to keep backups and logs?
 # Use the DAYS_TO_KEEP to change via env var
 if [[ ! "${DAYS_TO_KEEP}" = "" ]];
+then
     echo "export DAYS_TO_KEEP=${DAYS_TO_KEEP}" >> /etc/environment
 fi;
 
