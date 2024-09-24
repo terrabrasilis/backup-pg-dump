@@ -2,12 +2,19 @@
 version: '2'
 
 services:
-  backup-pg:
-    image: 'terrabrasilis/backup-pg-dump:v1.3.1'
-    container_name: backup-pg
+  backup-pg-d:
+    image: 'terrabrasilis/backup-pg-dump:v1.3.2'
+    container_name: backup-pg-d
     restart: always
     volumes:
-      - '/main/storage:/data'
+      - './src/data:/data'
     environment:
-      # if omitted or different from "DAILY" the default value of "WEEKLY" mode will be used
+      # if omitted or different from "DAILY" the "WEEKLY" mode will be used.
       - "FREQUENCY=DAILY"
+
+  backup-pg-w:
+    image: 'terrabrasilis/backup-pg-dump:v1.3.2'
+    container_name: backup-pg-w
+    restart: always
+    volumes:
+      - './src/data:/data'
