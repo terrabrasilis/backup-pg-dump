@@ -86,6 +86,13 @@ COMMENT ON COLUMN public.databases_for_bkp.weekly
     IS 'The "true" value to make weekly backup of the database';
 ```
 
+```sql
+-- For the initial load of all database names, we can use this.
+INSERT INTO public.databases_for_bkp(database_name, need_vacuum, daily, weekly)
+SELECT datname, false::boolean, true::boolean, false::boolean FROM pg_database WHERE NOT datistemplate AND datname <> 'postgres';
+```
+
+
 ## Defining Task Schedule
 
 There are only two options, daily or weekly.
