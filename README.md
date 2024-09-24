@@ -92,7 +92,6 @@ INSERT INTO public.databases_for_bkp(database_name, need_vacuum, daily, weekly)
 SELECT datname, false::boolean, true::boolean, false::boolean FROM pg_database WHERE NOT datistemplate AND datname <> 'postgres';
 ```
 
-
 ## Defining Task Schedule
 
 There are only two options, daily or weekly.
@@ -102,6 +101,14 @@ The backup schedule is set to run weekly by default. To change this behavior you
 The time is predefined in "weekly.cron" and daily.cron and will only change if you rebuild your container.
 
 The day of the week is Saturday and you also need to change it directly in the "weekly.cron" file and rebuild your container.
+
+### Delete old backups
+
+How many days to keep backups and logs?
+
+There is a default value for each frequency: 45 days for daily backups and 60 days for weekly backups.
+
+Use the DAYS_TO_KEEP environment variable when running the container to change the default value. See example into "docker-compose.yml" file.
 
 ## Build image
 
