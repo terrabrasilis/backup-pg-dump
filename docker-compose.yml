@@ -3,7 +3,7 @@ version: '2'
 
 services:
   backup-pg-d:
-    image: 'terrabrasilis/backup-pg-dump:v1.3.2'
+    image: 'terrabrasilis/backup-pg-dump:v1.4.0'
     container_name: backup-pg-d
     restart: always
     volumes:
@@ -13,7 +13,7 @@ services:
       - "FREQUENCY=DAILY"
 
   backup-pg-w:
-    image: 'terrabrasilis/backup-pg-dump:v1.3.2'
+    image: 'terrabrasilis/backup-pg-dump:v1.4.0'
     container_name: backup-pg-w
     restart: always
     volumes:
