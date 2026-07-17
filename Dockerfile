@@ -1,5 +1,5 @@
 #--------- Generic stuff all our Dockerfiles should start -----------------------------------
-FROM alpine:3.13
+FROM alpine:3.20
 
 LABEL "br.inpe.dpi"="INPE/DPI-TerraBrasilis"
 LABEL br.inpe.dpi.terrabrasilis="microservice"
