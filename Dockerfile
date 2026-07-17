@@ -22,8 +22,8 @@ RUN apk update \
 ENV TZ=America/Sao_Paulo
 
 # define the install and shared paths
-ENV INSTALL_PATH /usr/local
-ENV SHARED_DIR /data
+ENV INSTALL_PATH=/usr/local
+ENV SHARED_DIR=/data
 
 ## THE ENV VARS ARE NOT READED INSIDE A SHELL SCRIPT THAT RUNS IN CRON TASKS.
 ## SO, WE WRITE INSIDE THE /etc/environment FILE AND READS BEFORE RUN THE SCRIPT.
